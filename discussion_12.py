@@ -74,12 +74,18 @@ def visualization_salary_data(cur, conn):
     for item in salary_data:
         salary_list.append(item[0])
         job_list.append(item[1])
+    
     plt.figure()
     plt.scatter(job_list, salary_list)
     
+    cur.execute('SELECT jobs.job_title, jobs.max_salary, jobs.min_salary FROM jobs')
+    job_data = cur.fetchall()
+    salary_list = []
+    job_list = []
+    
     plt.xticks(rotation = 45) # xticks: x-axis
     plt.tight_layout()
-    
+
     plt.show()
     pass
 
